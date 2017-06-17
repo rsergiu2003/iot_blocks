@@ -14,13 +14,13 @@ var invertShape = draw2d.SetFigure.extend({
      this._super( $.extend({stroke:0, bgColor:null, width:96,height:89},attr), setter, getter);
      var port;
      // Port
-     port = this.createPort("hybrid", new draw2d.layout.locator.XYRelPortLocator(-2.3399999999997574, 70.51439606741573));
+     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(-2.3399999999997574, 70.51439606741573));
      port.setConnectionDirection();
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
      port.setMaxFanOut(20);
      // Port
-     port = this.createPort("hybrid", new draw2d.layout.locator.XYRelPortLocator(102.6200000000003, 70.51439606741573));
+     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(102.6200000000003, 70.51439606741573));
      port.setConnectionDirection();
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
