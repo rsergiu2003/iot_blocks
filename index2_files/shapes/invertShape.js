@@ -31,6 +31,18 @@ var invertShape = draw2d.SetFigure.extend({
     renderPath: function () {
          var str = "";
         
+         var str = "";
+        var v;
+        var parameters = "";
+        this.getInputPorts().each(function (index, port) {
+           
+            var conn = port.getConnections().first();
+            v = conn.getSource().getParent().renderPath();
+            v = v + "=" + portVarTranslate("port."+conn.getTarget().id) + ":" + portVarTranslate("port."+conn.getSource().id) + instructionSeparator();
+            str = str + v;
+            parameters = parameters + portVarTranslate("port."+conn.getTarget().id) + ":";
+        });
+        
         //output specific code
         str = str + "!:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + portVarTranslate("port."+this.getOutputPorts().first().id) + instructionSeparator();
 
