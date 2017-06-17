@@ -19,8 +19,18 @@ example.Toolbar = Class.extend({
                 }
             });
             if(confirm("your code is: "+finalStr+" upload ?")) {
-                
-            }
+                var data = new Object();
+                data['ip'] = $("#device_ip").val();
+                data['code'] = finalStr;
+                $.ajax({
+                  type: "POST",
+                  url: "upload.php",
+                  data: data,
+                  success: function (response) {
+                      alert(response);
+                  }
+                });
+           }
             // alert(finalStr);
         });
         
