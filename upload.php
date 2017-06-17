@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-print_r($_POST);
+// print_r($_POST);
   if(isset($_POST['code']) && strlen($_POST['code'])>0) {
 
     $msg = "{{".$_POST['code']."}}";

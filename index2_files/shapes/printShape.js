@@ -43,9 +43,9 @@ var printShape = draw2d.SetFigure.extend({
         });
         
         //output specific code
-        str = str + "p:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + this.id + instructionSeparator();
+        str = str + "p:" + portVarTranslate("port."+this.getInputPorts().first().id) + instructionSeparator();
 
-        console.log(str);
+        return str;
     },
 
    createShapeElement : function()
