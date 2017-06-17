@@ -16,7 +16,7 @@
  * THis is the program
  */
 //char program[] = "i:0:0;=:1:0;v:2:27;=:3:2;>:1:3:4;=:5:4;o:5:6;";
-char program[] = "i:0:0;p:0;v:1:28;>:0:1:2;o:2:0;";
+char program[] = "i:0:0;p:0;v:1:28;>:0:1:2;o:2:0;v:3:30;>:0:3:4;o:4:1;p:1;";
 
 float variables[30];
 
@@ -28,24 +28,31 @@ DallasTemperature sensors(&oneWire);
 char logStr[80];
 
 #define OUTPUT0 12
+#define OUTPUT1 11
 
 // the setup function runs once when you press reset or power the board
 void setup() {
   pinMode(OUTPUT0, OUTPUT);  
+  pinMode(OUTPUT1, OUTPUT);  
 
   Serial.begin(9600);
+
+  setupWIFI();
+  
   sensors.begin(); 
 }
 
 // the loop function runs over and over again forever
 void loop() {
  
-   sensors.requestTemperatures();
+//   sensors.requestTemperatures();
 //    float temp = sensors.getTempCByIndex(0);
 //    Serial.print("T:"); Serial.println(temp);
-  executeProgram();
+//  executeProgram();
 
-    delay(100);
+    wifiLoop();
+    
+//   delay(100);
     
 }
 
@@ -148,66 +155,3 @@ void executeOpperation (char opperation, int parameter1,int parameter2, int para
     break;
    }
 }
-
-/* 
- * Define some Cool functions
- */
- void associateValue (char v1, char v2) {
-    variables[v1] = variables[v2];
- }
-
- void input(char v, char sensor) {
-  variables[v] = getInputValue(sensor);
- }
-
- void output(char v, char output) {
-    setOutputValue( variables[v],output);
- }
-
- void xgty(char v1, char v2, char v3) {
-  if(variables[v1]>variables[v2]) {
-    variables[v3] = 1;
-  } else {
-    variables[v3] = 0;
-  }
- }
-
- void logValue(char v) {
-  sprintf(logStr,"logging value values[%d] =",v);
-  Serial.print(logStr); 
-    Serial.println(variables[v]);
- }
-
- void setVariable(char v, int value) {
-  variables[v] = value;
- }
-
-/*
- * will get the input value based on the pin number
- * Those are board specific functions, each board will have specific sensors on specific pins (multiple on same pins on some cases)
- */
-float getInputValue (char sensor) {
-  //handle sensors
-
-  //0 - first temperature sensor
-  if(sensor == 0) {
-    return getDS18B20(0);
-  }
-}
-
-float getDS18B20(char index) {
-    sensors.requestTemperatures();
-    float temp = sensors.getTempCByIndex(0);
-    return temp;
-}
-
-/*
- * set an output pin based on the value (this function will decide which kind of output is)
- */
- void setOutputValue(float value, char outputIndex) {
-  
-  if(outputIndex == 0) {
-      digitalWrite(OUTPUT0, value);
-  }
- }
-
