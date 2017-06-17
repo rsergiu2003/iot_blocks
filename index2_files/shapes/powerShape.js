@@ -27,7 +27,7 @@ powerShape = draw2d.shape.basic.Image.extend({
     init: function(attr, setter,getter){
         this._super($.extend({stroke:0, bgColor:"#f0f0ff"},attr), setter,getter);
         
-        this.inputLocator = new tdraw2d.layout.locator.InputPortLocator()
+        this.inputLocator = new draw2d.layout.locator.InputPortLocator()
         
         this.createPort("input", this.inputLocator);
         this.createPort("input", this.inputLocator);

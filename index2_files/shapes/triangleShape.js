@@ -5,61 +5,32 @@
 // Go to the Designer http://www.draw2d.org               
 // to design your own shape or download user generated    
 //                                                        
-var addShape = draw2d.SetFigure.extend({            
+var triangleShape = draw2d.SetFigure.extend({            
 
-   NAME: "addShape",
+   NAME: "triangleShape",
 
    init:function(attr, setter, getter)
    {
-     this._super( $.extend({stroke:0, bgColor:null, width:104,height:138},attr), setter, getter);
+     this._super( $.extend({stroke:0, bgColor:null, width:119,height:118},attr), setter, getter);
      var port;
-     // Port
-     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(-4.641901823999953, 50.72463768115942));
-     port.setConnectionDirection();
-     port.setBackgroundColor("#37B1DE");
-     port.setName("Port");
-     port.setMaxFanOut(20);
-     // Port
-     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(-4.641901823999953, 86.95652173913044));
-     port.setConnectionDirection();
-     port.setBackgroundColor("#37B1DE");
-     port.setName("Port");
-     port.setMaxFanOut(20);
-     // Port
-     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(105.76923076923077, 68.84057971014492));
-     port.setConnectionDirection(1);
-     port.setBackgroundColor("#37B1DE");
-     port.setName("Port");
-     port.setMaxFanOut(20);
      this.persistPorts=false;
+     
+     // Create any Draw2D figure as decoration for the connection
+      //
+      this.label = new draw2d.shape.basic.Label({text:"Variable", color:"#0d0d0d", fontColor:"#0d0d0d"});
+      
+      // add the new decoration to the connection with a position locator.
+      //
+      this.add(this.label, new draw2d.layout.locator.CenterLocator());
+      
+      this.label.installEditor(new draw2d.ui.LabelInplaceEditor());
    },
-
-
-    renderPath: function () {
-        // var str = this.id + "=";
-        var str = "";
-        var v;
-        var parameters = "";
-        this.getInputPorts().each(function (index, port) {
-           
-            var conn = port.getConnections().first();
-            v = conn.getSource().getParent().renderPath();
-            v = v + portVarTranslate("port."+conn.getTarget().id) + "=" + portVarTranslate("port."+conn.getSource().id) + ";\n";
-            str = str + v;
-            parameters = parameters + portVarTranslate("port."+conn.getTarget().id) + ":"
-        });
-        
-        //output specific code
-        str = str + "add:" + parameters +  portVarTranslate("port."+this.getOutputPorts().first().id)+";\n";
-
-        return str;
-    },
 
    createShapeElement : function()
    {
       var shape = this._super();
-      this.originalWidth = 104;
-      this.originalHeight= 138;
+      this.originalWidth = 119;
+      this.originalHeight= 118;
       return shape;
    },
 
@@ -68,35 +39,19 @@ var addShape = draw2d.SetFigure.extend({
        this.canvas.paper.setStart();
 
         // BoundingBox
-        shape = this.canvas.paper.path("M0,0 L104,0 L104,138 L0,138");
+        shape = this.canvas.paper.path("M0,0 L119,0 L119,118 L0,118");
         shape.attr({"stroke":"none","stroke-width":0,"fill":"none"});
         shape.data("name","BoundingBox");
         
-        // Rectangle
-        shape = this.canvas.paper.path('M0 0L104 0L104 138L0 138Z');
-        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#FFFFFF","dasharray":null,"opacity":1});
-        shape.data("name","Rectangle");
+        // Line_shadow
+        shape = this.canvas.paper.path('M61.5 0.5L0.5,118.5L119.5,118.5L60.5,0.5');
+        shape.attr({"stroke-linecap":"round","stroke-linejoin":"round","stroke":"none","stroke-width":1,"stroke-dasharray":null,"opacity":1});
+        shape.data("name","Line_shadow");
         
-        // Label
-        shape = this.canvas.paper.text(0,0,'in1');
-        shape.attr({"x":5.328125,"y":70,"text-anchor":"start","text":"in1","font-family":"\"Arial\"","font-size":12,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
-        shape.data("name","Label");
-        
-        // Label
-        shape = this.canvas.paper.text(0,0,'in2');
-        shape.attr({"x":8,"y":120,"text-anchor":"start","text":"in2","font-family":"\"Arial\"","font-size":12,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
-        shape.data("name","Label");
-        
-        // Label
-        shape = this.canvas.paper.text(0,0,'out');
-        shape.attr({"x":76.765625,"y":95,"text-anchor":"start","text":"out","font-family":"\"Arial\"","font-size":12,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
-        shape.data("name","Label");
-        
-        // Label
-        shape = this.canvas.paper.text(0,0,'Add');
-        shape.attr({"x":31.5234375,"y":32,"text-anchor":"start","text":"Add","font-family":"\"Arial\"","font-size":23,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
-        shape.data("name","Label");
-        
+        // Line
+        shape = this.canvas.paper.path('M61.5 0.5L0.5,118.5L119.5,118.5L60.5,0.5');
+        shape.attr({"stroke-linecap":"round","stroke-linejoin":"round","stroke":"#000000","fill":"red","stroke-width":1,"stroke-dasharray":null,"opacity":0.7});
+        shape.data("name","Line");
 
         return this.canvas.paper.setFinish();
    },
@@ -246,7 +201,7 @@ var addShape = draw2d.SetFigure.extend({
  *
  *
  */
-addShape = addShape.extend({
+triangleShape = triangleShape.extend({
 
     init: function(attr, setter, getter){
          this._super(attr, setter, getter);

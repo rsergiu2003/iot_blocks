@@ -39,13 +39,14 @@
 
     <script src="./index2_files/example.json"></script>
 
-    <script src="./index2_files/testShape.js"></script>
-    <script src="./index2_files/addShape.js"></script>
-    <script src="./index2_files/invertShape.js"></script>
-    <script src="./index2_files/xgtyShape.js"></script>
-    <script src="./index2_files/andShape.js"></script>
-    <script src="./index2_files/OutShape.js"></script>
-    <script src="./index2_files/powerShape.js"></script>
+    <script src="./index2_files/shapes/testShape.js"></script>
+    <script src="./index2_files/shapes/addShape.js"></script>
+    <script src="./index2_files/shapes/invertShape.js"></script>
+    <script src="./index2_files/shapes/xgtyShape.js"></script>
+    <script src="./index2_files/shapes/andShape.js"></script>
+    <script src="./index2_files/shapes/OutShape.js"></script>
+    <script src="./index2_files/shapes/powerShape.js"></script>
+    <script src="./index2_files/shapes/triangleShape.js"></script>
 
 <script type="text/javascript">
 // set this to true if you want see the JSON serilization/debug panel
@@ -94,6 +95,10 @@ function portVarTranslate (name) {
     return allPorts.length - 1;
 }
 
+function instructionSeparator () {
+    return ";\n";
+}
+
 </script>
 
 </head>
@@ -102,9 +107,7 @@ function portVarTranslate (name) {
     <div id="toolbar">
        <div id="radio">
             <button id="clear" >Clear</button>
-
-            <input  type="radio" id="radio1" name="radio" data-router="draw2d.layout.connection.ManhattanConnectionRouter"/><label for="radio1">Manhattan</label>
-            <button id="generateScript" >Generate</button>
+<button id="generateScript" >Generate</button>
 
         </div>
     </div>
@@ -112,13 +115,26 @@ function portVarTranslate (name) {
      <span id="logo">Draw2D</span>
      <div id="layer_elements"></div>
      <div id="layer_header" class="highlight panetitle blackgradient">
-            <div data-shape="testShape"   class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Input</div>
-            <div data-shape="addShape"   class="palette_node_element draw2d_droppable">Add</div>
-            <div data-shape="invertShape"   class="palette_node_element draw2d_droppable">Invert</div>
-            <div data-shape="xgtyShape"   class="palette_node_element draw2d_droppable">xgtyShape</div>
-            <div data-shape="andShape"   class="palette_node_element draw2d_droppable">andShape</div>
-            <div data-shape="powerShape"   class="palette_node_element draw2d_droppable">powerShape</div>
-            <div data-shape="OutShape"   class="palette_node_element draw2d_droppable">Output</div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Input 0</div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Input 1</div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Input 2</div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Input 3</div>
+            
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Digital 0</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Digital 1</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Digital 2</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Digital 3</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Analog 0</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Analog 1</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Analog 2</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable">Output Analog 3</div>
+            
+            <div data-shape="triangleShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Variable</div>
+            <div data-shape="addShape" class="palette_node_element draw2d_droppable">Add</div>
+            <div data-shape="invertShape" class="palette_node_element draw2d_droppable">Invert</div>
+            <div data-shape="xgtyShape" class="palette_node_element draw2d_droppable">xgtyShape</div>
+            <div data-shape="andShape" class="palette_node_element draw2d_droppable">andShape</div>
+            <div data-shape="powerShape" class="palette_node_element draw2d_droppable">powerShape</div>
      </div>
    </div>
     <div id="canvas" class="" ></div>

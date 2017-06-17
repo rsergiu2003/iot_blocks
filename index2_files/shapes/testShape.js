@@ -26,7 +26,7 @@ var testShape = draw2d.SetFigure.extend({
         var str = "";
         
         //output specific code
-        str = str + "in:" + portVarTranslate("port."+this.getOutputPorts().first().id) + ":" + "<input pin number>;\n";
+        str = str + "in:" + portVarTranslate("port."+this.getOutputPorts().first().id) + ":" + "<input pin number>"+instructionSeparator();
 
         return str;
     },

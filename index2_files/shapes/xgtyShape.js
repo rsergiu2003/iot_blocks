@@ -35,6 +35,25 @@ var xgtyShape = draw2d.SetFigure.extend({
      this.persistPorts=false;
    },
 
+    renderPath: function () {
+        // var str = this.id + "=";
+        var str = "";
+        var v;
+        var parameters = "";
+        this.getInputPorts().each(function (index, port) {
+           
+            var conn = port.getConnections().first();
+            v = conn.getSource().getParent().renderPath();
+            v = v + portVarTranslate("port."+conn.getTarget().id) + "=" + portVarTranslate("port."+conn.getSource().id) + instructionSeparator();
+            str = str + v;
+            parameters = parameters + portVarTranslate("port."+conn.getTarget().id) + ":"
+        });
+        
+        //output specific code
+        str = str + "x>y:" + parameters +  portVarTranslate("port."+this.getOutputPorts().first().id)+instructionSeparator();
+
+        return str;
+    },
    createShapeElement : function()
    {
       var shape = this._super();
