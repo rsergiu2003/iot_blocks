@@ -32,6 +32,8 @@ var addShape = draw2d.SetFigure.extend({
      port.setName("Port");
      port.setMaxFanOut(20);
      this.persistPorts=false;
+     
+     
    },
 
 
@@ -74,7 +76,7 @@ var addShape = draw2d.SetFigure.extend({
         
         // Rectangle
         shape = this.canvas.paper.path('M0 0L161 0L161 101L0 101Z');
-        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#FFFFFF","dasharray":null,"opacity":1});
+        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#FFCB70","dasharray":null,"opacity":1});
         shape.data("name","Rectangle");
         
         // Label

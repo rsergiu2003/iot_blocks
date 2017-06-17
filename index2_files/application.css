@@ -2,6 +2,7 @@
 body{
  font-family:Helvetica, Arial, Verdana, sans-serif;
  color:#6b6b6b;
+ background-image: url('background.png');
 }
 
 input{
@@ -34,7 +35,8 @@ input{
 	left: 160px;
 	bottom: 0px;
 	overflow: scroll;
-	background-color: #FFFFFF;
+	/*background-color: #FFFFFF;*/
+	background-image: url('background.png');
 }
 
 #navigation{

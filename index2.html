@@ -47,10 +47,11 @@
     <script src="./index2_files/shapes/powerShape.js"></script>
     <script src="./index2_files/shapes/triangleShape.js"></script>
     <script src="./index2_files/shapes/conditionShape.js"></script>
+    <script src="./index2_files/shapes/printShape.js"></script>
 
 <script type="text/javascript">
 // set this to true if you want see the JSON serilization/debug panel
-var showJSON =true;
+var showJSON =false;
 
 var app;
 $(window).load(function () {
@@ -108,32 +109,29 @@ function instructionSeparator () {
        <div id="radio">
             <button id="clear" >Clear</button>
 <button id="generateScript" >Generate</button>
-
+<span>Device Address</span> <input type="text">
         </div>
     </div>
     <div id="side-nav" >
      <span id="logo">IoT Designer</span>
      <div id="layer_elements"></div>
      <div id="layer_header" class="highlight panetitle blackgradient">
-            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas.." data-sensor_id=0>Input 0</div>
-            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas.." data-sensor_id=1>Input 1</div>
-            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas.." data-sensor_id=2>Input 2</div>
-            <div data-shape="testShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas.." data-sensor_id=3>Input 3</div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" title="drag&amp;drop the table into the canvas.." data-sensor_id=0 data-image='images/tools-and-utensils.png'><img src="images/tools-and-utensils.png"><div>Temp 1</div></div></div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" data-sensor_id=1 data-image='images/tools-and-utensils.png'><img src="images/tools-and-utensils.png"><div>Temp 2</div></div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" data-sensor_id=2 data-image='images/soil.png'><img src="images/soil.png"><div>Soil 1</div></div>
+            <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" data-sensor_id=3 data-image='images/drops.png'><img src="images/drops.png"><div>Humid 1</div></div>
             
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=0>Output Digital 0</div>
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=1>Output Digital 1</div>
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=2>Output Digital 2</div>
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=3>Output Digital 3</div>
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=4>Output Analog 0</div>
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=5>Output Analog 1</div>
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=6>Output Analog 2</div>
-            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=7>Output Analog 3</div>
-            
-            <div data-shape="triangleShape" class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Variable</div>
-            <div data-shape="addShape" class="palette_node_element draw2d_droppable">Add</div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=0 data-image='images/connect.png' style="background-color:#C2FF73"><img src="images/connect.png"><div>Output Digital 1</div></div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=1 data-image='images/connect.png' style="background-color:#C2FF73"><img src="images/connect.png"><div>Output Digital 2</div></div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=2 data-image='images/sound-waves.png' style="background-color:#C2FF73"><img src="images/sound-waves.png"><div>Analog out 1</div></div>
+            <div data-shape="OutShape" class="palette_node_element draw2d_droppable" data-sensor_id=3 data-image='images/sound-waves.png' style="background-color:#C2FF73"><img src="images/sound-waves.png"><div>Analog out 2</div></div>
+          
+            <div data-shape="triangleShape" class="palette_node_element draw2d_droppable" data-image='images/input.png' style="background-color:#FFCB70"><img src="images/input.png"><div>Value</div></div>
+            <div data-shape="addShape" class="palette_node_element draw2d_droppable" data-image='images/input.png' style="background-color:#FFCB70"><img src="images/add.png"><div>Add</div></div>
             <div data-shape="invertShape" class="palette_node_element draw2d_droppable">Inverse</div>
             <div data-shape="conditionShape" class="palette_node_element draw2d_droppable">Condition</div>
             <div data-shape="andShape" class="palette_node_element draw2d_droppable">And</div>
+            <div data-shape="printShape" class="palette_node_element draw2d_droppable">Print</div>
      </div>
    </div>
     <div id="canvas" class="" ></div>

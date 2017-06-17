@@ -19,17 +19,20 @@ var OutShape = draw2d.SetFigure.extend({
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
      port.setMaxFanOut(20);
+     
+     this.label = new draw2d.shape.basic.Label({text:"input", color:"#0d0d0d", fontColor:"#0d0d0d"});
+      
+      // add the new decoration to the connection with a position locator.
+      //
+      this.add(this.label, new draw2d.layout.locator.CenterLocator());
+     
+      this.add(this.label, new draw2d.layout.locator.BottomLocator());
+       this.image = new draw2d.shape.basic.Image();
+        this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
+     
      this.persistPorts=false;
      this.setResizeable(false);
-
-
-
-     port.on("connect", function(emitterPort, connection){
-         
-
-     });
    },
-
 
     renderPath: function () {
         // var str = this.id + "=";
@@ -38,7 +41,7 @@ var OutShape = draw2d.SetFigure.extend({
         this.getInputPorts().each(function (index, port) {
            
             var conn = port.getConnections().first();
-            console.log(conn.getSource().getParent());
+            //console.log(conn.getSource().getParent());
             v = conn.getSource().getParent().renderPath();
             v = v + "=" + portVarTranslate("port."+conn.getTarget().id) + ":" + portVarTranslate("port."+conn.getSource().id) + instructionSeparator();
             str = str + v;
@@ -53,6 +56,7 @@ var OutShape = draw2d.SetFigure.extend({
    createShapeElement : function()
    {
       var shape = this._super();
+       this.label.text = "Output " + this.id;
       this.originalWidth = 91;
       this.originalHeight= 87;
       return shape;
@@ -61,6 +65,7 @@ var OutShape = draw2d.SetFigure.extend({
    createSet: function()
    {
        this.canvas.paper.setStart();
+       this.image.path = this.getUserData()['imageIcon'];
 
         // BoundingBox
         shape = this.canvas.paper.path("M0,0 L91,0 L91,87 L0,87");
@@ -73,8 +78,8 @@ var OutShape = draw2d.SetFigure.extend({
         shape.data("name","Rectangle");
         
         // Label
-        shape = this.canvas.paper.text(0,0,'Out');
-        shape.attr({"x":24.546875,"y":43.5,"text-anchor":"start","text":"Out","font-family":"\"Arial\"","font-size":26,"stroke":"#FF0000","fill":"#616161","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
+        shape = this.canvas.paper.text(0,0,'');
+        shape.attr({"x":24.546875,"y":43.5,"text-anchor":"start","text":"","font-family":"\"Arial\"","font-size":26,"stroke":"#FF0000","fill":"#616161","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
         shape.data("name","Label");
         
 

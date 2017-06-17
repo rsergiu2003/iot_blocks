@@ -27,6 +27,15 @@ var invertShape = draw2d.SetFigure.extend({
      port.setMaxFanOut(20);
      this.persistPorts=false;
    },
+   
+    renderPath: function () {
+         var str = "";
+        
+        //output specific code
+        str = str + "!:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + portVarTranslate("port."+this.getOutputPorts().first().id) + instructionSeparator();
+
+        return str;
+    },
 
    createShapeElement : function()
    {
@@ -47,7 +56,7 @@ var invertShape = draw2d.SetFigure.extend({
         
         // Rectangle
         shape = this.canvas.paper.path('M0 0L96 0L96 89L0 89Z');
-        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#FFFFFF","dasharray":null,"opacity":1});
+        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#FFCB70","dasharray":null,"opacity":1});
         shape.data("name","Rectangle");
         
         // Label

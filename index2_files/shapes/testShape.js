@@ -11,14 +11,25 @@ var testShape = draw2d.SetFigure.extend({
 
    init:function(attr, setter, getter)
    {
-     this._super( $.extend({stroke:0, bgColor:null, width:66,height:66},attr), setter, getter);
+     this._super( $.extend({stroke:0, bgColor:null, width:91,height:87},attr), setter, getter);
      var port;
      // Port
-     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(100.30303030303028, 50));
+     port = this.createPort("output",new draw2d.layout.locator.XYRelPortLocator(91, 50));
      port.setConnectionDirection(1);
      port.setBackgroundColor("#287EC9");
      port.setName("Port");
      port.setMaxFanOut(30);
+     
+     this.label = new draw2d.shape.basic.Label({text:"input", color:"#0d0d0d", fontColor:"#0d0d0d"});
+      
+      // add the new decoration to the connection with a position locator.
+      //
+      this.add(this.label, new draw2d.layout.locator.BottomLocator());
+      
+       this.image = new draw2d.shape.basic.Image();
+
+        this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
+     
      this.persistPorts=false;
    },
 
@@ -34,34 +45,32 @@ var testShape = draw2d.SetFigure.extend({
    createShapeElement : function()
    {
       var shape = this._super();
-      this.originalWidth = 66;
-      this.originalHeight= 66;
+      this.originalWidth = 91;
+      this.originalHeight= 87;
       return shape;
    },
 
    createSet: function()
    {
        this.canvas.paper.setStart();
+       this.label.text = "Input " + this.id;
+       this.image.path = this.getUserData()['imageIcon'];
+       
 
-        // BoundingBox
-        shape = this.canvas.paper.path("M0,0 L66,0 L66,66 L0,66");
+         // BoundingBox
+        shape = this.canvas.paper.path("M0,0 L91,0 L91,87 L0,87");
         shape.attr({"stroke":"none","stroke-width":0,"fill":"none"});
         shape.data("name","BoundingBox");
         
-        // Circle
-        shape = this.canvas.paper.ellipse();
-        shape.attr({"rx":33,"ry":33,"cx":33,"cy":33,"stroke":"#1B1B1B","stroke-width":1,"fill":"#3DC5FF","dasharray":null,"opacity":1});
-        shape.data("name","Circle");
+        // Rectangle
+        shape = this.canvas.paper.path('M91,72Q91,87 76, 87L15,87Q0,87 0, 72L0,15Q0,0 15, 0L76,0Q91,0 91, 15L91,72');
+        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#54EEFF","dasharray":null,"opacity":1});
+        shape.data("name","Rectangle");
         
-        // Line_shadow
-        shape = this.canvas.paper.path('M23.5 20.5L48.5,33.5L23.5,46.5L23.5,46.5L23.5,46.5');
-        shape.attr({"stroke-linecap":"round","stroke-linejoin":"round","stroke":"none","stroke-width":9,"stroke-dasharray":null,"opacity":1});
-        shape.data("name","Line_shadow");
-        
-        // Line
-        shape = this.canvas.paper.path('M23.5 20.5L48.5,33.5L23.5,46.5L23.5,46.5L23.5,46.5');
-        shape.attr({"stroke-linecap":"round","stroke-linejoin":"round","stroke":"#000000","stroke-width":9,"stroke-dasharray":null,"opacity":1});
-        shape.data("name","Line");
+        // Label
+        shape = this.canvas.paper.text(0,0,'');
+        shape.attr({"x":24.546875,"y":43.5,"text-anchor":"start","text":"","font-family":"\"Arial\"","font-size":26,"stroke":"#FF0000","fill":"#616161","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
+        shape.data("name","Label");
         
 
         return this.canvas.paper.setFinish();
