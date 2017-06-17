@@ -50,7 +50,7 @@ var OutShape = draw2d.SetFigure.extend({
         //output specific code
         str = str + "o:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + this.id + instructionSeparator();
 
-        console.log(str);
+        return str;
     },
 
    createShapeElement : function()

@@ -12,11 +12,16 @@ example.Toolbar = Class.extend({
 
 
         $("#generateScript").button().click(function(){
+            var finalStr = "";
             app.view.getFigures().each(function (index, figure) {
                 if(figure.NAME == "OutShape") {
-                    figure.renderPath();
+                    finalStr = finalStr + figure.renderPath();
                 }
             });
+            if(confirm("your code is: "+finalStr+" upload ?")) {
+                
+            }
+            // alert(finalStr);
         });
         
         
