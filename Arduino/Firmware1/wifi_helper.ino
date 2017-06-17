@@ -15,9 +15,12 @@ void setupWIFI () {
  SendCommand("AT+CIFSR", "OK");
 }
 
-void wifiLoop () {
    String IncomingString="";
  boolean StringReady = false;
+ 
+void wifiLoop () {
+   IncomingString="";
+  StringReady = false;
  
  while (mySerial.available()){
    IncomingString=mySerial.readString();
@@ -26,6 +29,15 @@ void wifiLoop () {
  
   if (StringReady){
     Serial.println("Received String: " + IncomingString);
+    char start = IncomingString.indexOf("{{");
+    char endOfCode = IncomingString.lastIndexOf("}}");
+    if(start>=0) {
+//      Serial.println();
+
+      //update the program !
+      IncomingString.substring(start+2,endOfCode).toCharArray(program, IncomingString.length());
+      Serial.println(program);
+    }
   }
 }
 

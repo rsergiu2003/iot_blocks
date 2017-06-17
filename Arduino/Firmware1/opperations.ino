@@ -31,3 +31,11 @@
   variables[v] = value;
  }
 
+ void invert(char v1, char v2) {
+  if(variables[v1] == 1) {
+    variables[v2] = 0;
+  } else {
+    variables[v2] = 1;
+  }
+ }
+

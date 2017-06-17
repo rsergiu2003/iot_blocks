@@ -15,20 +15,22 @@
 /*
  * THis is the program
  */
-//char program[] = "i:0:0;=:1:0;v:2:27;=:3:2;>:1:3:4;=:5:4;o:5:6;";
-char program[] = "i:0:0;p:0;v:1:28;>:0:1:2;o:2:0;v:3:30;>:0:3:4;o:4:1;p:1;";
+char program[] = "i:0:0;=2:0;v:3:28;=4:3;>:2:4:5;=1:5;p:1;i:0:0;=2:0;v:3:28;=4:3;>:2:4:5;=6:5;o:6:0;                                                                                ";
+//char program[] = "i:0:0;p:0;v:1:28;>:0:1:2;o:2:0;v:3:30;>:0:3:4;o:4:1;p:1;";
 
-float variables[30];
+float variables[15];
 
 #define ds18b20 2
 OneWire oneWire(ds18b20);
 DallasTemperature sensors(&oneWire);
 
 //used to generate strings for debug printing
-char logStr[80];
+char logStr[40];
 
 #define OUTPUT0 12
 #define OUTPUT1 11
+
+unsigned long timeLastExecution;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -40,6 +42,8 @@ void setup() {
   setupWIFI();
   
   sensors.begin(); 
+
+  timeLastExecution = millis();
 }
 
 // the loop function runs over and over again forever
@@ -48,11 +52,14 @@ void loop() {
 //   sensors.requestTemperatures();
 //    float temp = sensors.getTempCByIndex(0);
 //    Serial.print("T:"); Serial.println(temp);
-//  executeProgram();
 
     wifiLoop();
     
 //   delay(100);
+  if((millis() - timeLastExecution) > 2000) {
+    executeProgram();
+    timeLastExecution = millis();
+  }
     
 }
 
@@ -66,7 +73,7 @@ char comvertToNumeric(char str[]) {
   //the current instructio
   char instruction = '#';
   //valid instructions
-  String instructions = String("iv=o+>");
+  String instructions = String("iv=o+>!");
   //numeric strinv
   String numeric = String("0123456789");
   //the current parameter string
@@ -86,7 +93,7 @@ void executeProgram () {
   //the current instructio
    instruction = '#';
   //valid instructions
-  instructions = String("piv=o+>");
+  instructions = String("!piv=o+>");
   //numeric strinv
   numeric = String("0123456789");
   //the current parameter string
@@ -152,6 +159,9 @@ void executeOpperation (char opperation, int parameter1,int parameter2, int para
     break;
     case 'v' : 
       setVariable(parameter1, parameter2);
+    break;
+    case '!' : 
+      invert(parameter1, parameter2);
     break;
    }
 }
