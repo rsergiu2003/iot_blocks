@@ -28,6 +28,11 @@ example.View = draw2d.Canvas.extend({
     {
         var type = $(droppedDomNode).data("shape");
         var figure = eval("new "+type+"();");
+        var idValue = $(droppedDomNode).data("sensor_id");
+        if (idValue != undefined)
+        {
+            figure.setId(idValue);
+        }
         
         // figure.addEntity("id");
         // figure.setName("NewTable");

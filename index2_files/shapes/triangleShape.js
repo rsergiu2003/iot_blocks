@@ -12,7 +12,13 @@ var triangleShape = draw2d.SetFigure.extend({
    init:function(attr, setter, getter)
    {
      this._super( $.extend({stroke:0, bgColor:null, width:119,height:118},attr), setter, getter);
-     var port;
+    var port;
+     // Port
+     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(97.54098360655738, 98.98989898989899));
+     port.setConnectionDirection();
+     port.setBackgroundColor("#37B1DE");
+     port.setName("Port");
+     port.setMaxFanOut(20);
      this.persistPorts=false;
      
      // Create any Draw2D figure as decoration for the connection
@@ -25,6 +31,15 @@ var triangleShape = draw2d.SetFigure.extend({
       
       this.label.installEditor(new draw2d.ui.LabelInplaceEditor());
    },
+   
+    renderPath: function () {
+        var str = "";
+        
+        //output specific code
+        str = str + "v:" + portVarTranslate("port."+this.getOutputPorts().first().id) + ":" + this.label.text + instructionSeparator();
+
+        return str;
+    },
 
    createShapeElement : function()
    {
