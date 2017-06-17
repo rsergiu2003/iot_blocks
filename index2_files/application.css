@@ -1,0 +1,278 @@
+// Global settings
+body{
+ font-family:Helvetica, Arial, Verdana, sans-serif;
+ color:#6b6b6b;
+}
+
+input{
+ background: none repeat scroll 0 0 #f8f8f8;
+ border-color: #C6C6C6 #DADADA #EAEAEA;
+ border-radius: 4px 4px 4px 4px;
+ -moz-box-sizing: border-box;
+ padding-left:7px;
+ border-style: solid ;
+ border-width: 1px;
+ vertical-align: middle;
+ height:25px;
+ font-size:14px;
+ line-height:25px;
+}
+
+
+#container{
+ padding:0px;
+ margin:0px;
+}
+
+#canvas {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	top: 64px;
+	right: 0px;
+	left: 160px;
+	bottom: 0px;
+	overflow: scroll;
+	background-color: #FFFFFF;
+}
+
+#navigation{
+ padding:0px;
+ margin:0px;
+ background : transparent url(background_drak.jpg);
+ text-align: center;
+}
+
+#toolbar{
+background: #cecece; /* Old browsers */
+background: -moz-linear-gradient(top,  #cecece 0%, #a8a8a8 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cecece), color-stop(100%,#a8a8a8)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #cecece 0%,#a8a8a8 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #cecece 0%,#a8a8a8 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #cecece 0%,#a8a8a8 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #cecece 0%,#a8a8a8 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cecece', endColorstr='#a8a8a8',GradientType=0 ); /* IE6-9 */
+ padding:8px;
+ margin:0px;
+ height:50px;
+ border-bottom: 1px solid #515151;
+}
+
+   
+/******************************************************************
+ * Einstellungen der PropertyViews im Editmodus der "Form".
+ ******************************************************************/
+#propertypane {
+ padding:0px;
+ margin:0px;
+ width:150px;
+ background-color:#7D7D7D;
+ border-top:0px;
+}
+
+/*container of a single property entry*/
+.property_container {
+ padding:5px;
+ padding-bottom:15px;
+}
+
+.toolbar_delimiter {
+  margin-left:40px;
+}
+
+#content {
+ padding:0px;
+ margin:0px;
+}
+
+
+
+.palette_node_element{
+ border:1px solid gray;
+ background-color: #f3f3f3;
+ padding:10px;
+ cursor:move;
+ width:80px;
+ margin: 30px auto 30px auto;
+ text-align:center;
+ align:center;
+ border-radius: 5px;
+}
+
+.shadow {
+ -moz-box-shadow: 3px 3px 4px #000;
+ -webkit-box-shadow: 3px 3px 4px #000;
+ box-shadow: 3px 3px 4px #000;
+ /* For IE 8 */
+ -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+ /* For IE 5.5 - 7 */
+ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.palette_node_element {
+	border: 1px solid gray;
+	background-color: #f3f3f3;
+	padding: 10px;
+	cursor: move;
+	width: 80px;
+	margin: 30px auto 30px auto;
+	text-align: center;
+	align: center;
+	border-radius: 5px;
+}
+
+#side-nav {
+	border-right: 1px solid #e0e0e0;
+	bottom: 0;
+	background: #fff;
+	color: #333;
+	display: block;
+	font-family: 'RobotoDraft', sans-serif;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 160px;
+	z-index: 4;
+}
+
+#side-nav #logo {
+	border-bottom: 1px solid #e0e0e0;
+	display: block;
+	height: 64px;
+	margin: auto;
+	padding: 12px 24px 10px 24px;
+	position: relative;
+	font-size: 30px;
+	font-weight: 100;
+}
+
+
+.context-menu-list {
+    margin:0; 
+    padding:0;
+    
+    min-width: 120px;
+    max-width: 250px;
+    display: inline-block;
+    position: absolute;
+    list-style-type: none;
+    
+    border: 1px solid #DDD;
+    background: #EEE;
+    
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        -ms-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+         -o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+.context-menu-item {
+    padding: 2px 2px 2px 24px;
+    background-color: #EEE;
+    position: relative;
+    -webkit-user-select: none;
+       -moz-user-select: -moz-none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.context-menu-separator {
+    padding-bottom:0;
+    border-bottom: 1px solid #DDD;
+}
+
+.context-menu-item > label > input,
+.context-menu-item > label > textarea {
+    -webkit-user-select: text;
+       -moz-user-select: text;
+        -ms-user-select: text;
+            user-select: text;
+}
+
+.context-menu-item.hover {
+    cursor: pointer;
+    background-color: #39F;
+}
+
+.context-menu-item.disabled {
+    color: #666;
+}
+
+.context-menu-input.hover,
+.context-menu-item.disabled.hover {
+    cursor: default;
+    background-color: #EEE;
+}
+
+.context-menu-submenu:after {
+    content: ">";
+    color: #666;
+    position: absolute;
+    top: 0;
+    right: 3px;
+    z-index: 1;
+}
+
+/* icons
+    #protip:
+    In case you want to use sprites for icons (which I would suggest you do) have a look at
+    http://css-tricks.com/13224-pseudo-spriting/ to get an idea of how to implement 
+    .context-menu-item.icon:before {}
+ */
+.context-menu-item.icon { min-height: 18px; background-repeat: no-repeat; background-position: 4px 2px; }
+.context-menu-item.icon-edit { background-image: url(images/page_white_edit.png); }
+.context-menu-item.icon-cut { background-image: url(images/cut.png); }
+.context-menu-item.icon-copy { background-image: url(images/page_white_copy.png); }
+.context-menu-item.icon-paste { background-image: url(images/page_white_paste.png); }
+.context-menu-item.icon-delete { background-image: url(images/page_white_delete.png); }
+.context-menu-item.icon-add { background-image: url(images/page_white_add.png); }
+.context-menu-item.icon-quit { background-image: url(images/door.png); }
+
+/* vertically align inside labels */
+.context-menu-input > label > * { vertical-align: top; }
+
+/* position checkboxes and radios as icons */
+.context-menu-input > label > input[type="checkbox"],
+.context-menu-input > label > input[type="radio"] {
+    margin-left: -17px;
+}
+.context-menu-input > label > span {
+    margin-left: 5px;
+}
+
+.context-menu-input > label,
+.context-menu-input > label > input[type="text"],
+.context-menu-input > label > textarea,
+.context-menu-input > label > select {
+    display: block;
+    width: 100%;
+    
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+         -o-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.context-menu-input > label > textarea {
+    height: 100px;
+}
+.context-menu-item > .context-menu-list {
+    display: none;
+    /* re-positioned by js */
+    right: -5px;
+    top: 5px;
+}
+
+.context-menu-item.hover > .context-menu-list {
+    display: block;
+}
+
+.context-menu-accesskey {
+    text-decoration: underline;
+}

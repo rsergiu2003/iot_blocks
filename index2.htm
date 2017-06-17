@@ -1,0 +1,127 @@
+
+<!-- saved from url=(0097)http://draw2d.org/draw2d_touch/jsdoc_6/draw2d/examples/code_snippets/connection_router/index.html -->
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" style="height: 100%; overflow: hidden;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0">
+
+
+   <link type="text/css" rel="stylesheet" href="./index2_files/jquery-ui-1.8.16.custom.css">
+   <link type="text/css" rel="stylesheet" href="./index2_files/jquery.layout.css">
+   <link type="text/css" rel="stylesheet" href="./index2_files/application.css">
+
+    <link type="text/css" rel="stylesheet" href="./index2_files/contextmenu.css">
+
+    <script src="./index2_files/shifty.js"></script>
+    <script src="./index2_files/raphael.js"></script>
+    <script src="./index2_files/jquery-1.12.0.min.js"></script>
+    <script src="./index2_files/jquery.autoresize.js"></script>
+    <script src="./index2_files/jquery-touch_punch.js"></script>
+    <script src="./index2_files/jquery.contextmenu.js"></script>
+    <script src="./index2_files/rgbcolor.js"></script>
+    <script src="./index2_files/StackBlur.js"></script>
+    <script src="./index2_files/canvg.js"></script>
+    <script src="./index2_files/Class.js"></script>
+    <script src="./index2_files/json2.js"></script>
+    <script src="./index2_files/pathfinding-browser.min.js"></script>
+
+    <script src="./index2_files/draw2d.js"></script>
+
+    <script src="./index2_files/jquery.browser.js"></script>
+    <script src="./index2_files/jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="./index2_files/jquery.layout.js"></script>
+
+
+	<script src="./index2_files/Application.js"></script>
+    <script src="./index2_files/Toolbar.js"></script>
+    <script src="./index2_files/View.js"></script>
+	<script src="./index2_files/MyConnection.js"></script>
+
+    <script src="./index2_files/example.json"></script>
+
+    <script src="./index2_files/testShape.js"></script>
+    <script src="./index2_files/addShape.js"></script>
+    <script src="./index2_files/invertShape.js"></script>
+    <script src="./index2_files/xgtyShape.js"></script>
+    <script src="./index2_files/andShape.js"></script>
+    <script src="./index2_files/OutShape.js"></script>
+    <script src="./index2_files/powerShape.js"></script>
+
+<script type="text/javascript">
+// set this to true if you want see the JSON serilization/debug panel
+var showJSON =true;
+
+var app;
+$(window).load(function () {
+
+
+
+    app  = new example.Application();
+    app.load(jsonDocument);
+
+    if(showJSON===true){
+	    // display the JSON document in the preview DIV
+	    //
+	    displayJSON(app.view);
+
+	    // add an event listener to the Canvas for change notifications.
+	    // We just dump the current canvas document into the DIV
+	    //
+	    app.view.getCommandStack().addEventListener(function(e){
+	        if(e.isPostChangeEvent()){
+	            displayJSON(app.view);
+	        }
+	    });
+    }
+
+});
+
+
+function displayJSON(canvas){
+    var writer = new draw2d.io.json.Writer();
+    writer.marshal(canvas, function(json){
+        $("#json").html("<pre>"+JSON.stringify(json,null,2)+"<pre>");
+    });
+}
+
+var allPorts = [];
+function portVarTranslate (name) {
+    var index = allPorts.indexOf(name);
+    if(index>=0) {
+        return index;
+    }
+    allPorts.push(name);
+    return allPorts.length - 1;
+}
+
+</script>
+
+</head>
+
+<body id="container">
+    <div id="toolbar">
+       <div id="radio">
+            <button id="clear" >Clear</button>
+
+            <input  type="radio" id="radio1" name="radio" data-router="draw2d.layout.connection.ManhattanConnectionRouter"/><label for="radio1">Manhattan</label>
+            <button id="generateScript" >Generate</button>
+
+        </div>
+    </div>
+    <div id="side-nav" >
+     <span id="logo">Draw2D</span>
+     <div id="layer_elements"></div>
+     <div id="layer_header" class="highlight panetitle blackgradient">
+            <div data-shape="testShape"   class="palette_node_element draw2d_droppable" title="drag&amp;drop the table into the canvas..">Input</div>
+            <div data-shape="addShape"   class="palette_node_element draw2d_droppable">Add</div>
+            <div data-shape="invertShape"   class="palette_node_element draw2d_droppable">Invert</div>
+            <div data-shape="xgtyShape"   class="palette_node_element draw2d_droppable">xgtyShape</div>
+            <div data-shape="andShape"   class="palette_node_element draw2d_droppable">andShape</div>
+            <div data-shape="powerShape"   class="palette_node_element draw2d_droppable">powerShape</div>
+            <div data-shape="OutShape"   class="palette_node_element draw2d_droppable">Output</div>
+     </div>
+   </div>
+    <div id="canvas" class="" ></div>
+    <div id="json" class="" ></div>
+</body>
+</html>
