@@ -40,12 +40,12 @@ var OutShape = draw2d.SetFigure.extend({
             var conn = port.getConnections().first();
             console.log(conn.getSource().getParent());
             v = conn.getSource().getParent().renderPath();
-            v = v + portVarTranslate("port."+conn.getTarget().id) + "=" + portVarTranslate("port."+conn.getSource().id) + instructionSeparator();
+            v = v + "=" + portVarTranslate("port."+conn.getTarget().id) + ":" + portVarTranslate("port."+conn.getSource().id) + instructionSeparator();
             str = str + v;
         });
         
         //output specific code
-        str = str + "out:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + "<output pin number>"+instructionSeparator();
+        str = str + "o:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + this.id + instructionSeparator();
 
         console.log(str);
     },
