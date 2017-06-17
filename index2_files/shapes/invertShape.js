@@ -14,13 +14,13 @@ var invertShape = draw2d.SetFigure.extend({
      this._super( $.extend({stroke:0, bgColor:null, width:96,height:89},attr), setter, getter);
      var port;
      // Port
-     port = this.createPort("hybrid", new draw2d.layout.locator.XYRelPortLocator(-2.3399999999997574, 70.51439606741573));
+     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(-2.3399999999997574, 70.51439606741573));
      port.setConnectionDirection();
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
      port.setMaxFanOut(20);
      // Port
-     port = this.createPort("hybrid", new draw2d.layout.locator.XYRelPortLocator(102.6200000000003, 70.51439606741573));
+     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(102.6200000000003, 70.51439606741573));
      port.setConnectionDirection();
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
@@ -30,6 +30,18 @@ var invertShape = draw2d.SetFigure.extend({
    
     renderPath: function () {
          var str = "";
+        
+         var str = "";
+        var v;
+        var parameters = "";
+        this.getInputPorts().each(function (index, port) {
+           
+            var conn = port.getConnections().first();
+            v = conn.getSource().getParent().renderPath();
+            v = v + "=" + portVarTranslate("port."+conn.getTarget().id) + ":" + portVarTranslate("port."+conn.getSource().id) + instructionSeparator();
+            str = str + v;
+            parameters = parameters + portVarTranslate("port."+conn.getTarget().id) + ":";
+        });
         
         //output specific code
         str = str + "!:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + portVarTranslate("port."+this.getOutputPorts().first().id) + instructionSeparator();

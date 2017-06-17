@@ -97,7 +97,7 @@ function portVarTranslate (name) {
 }
 
 function instructionSeparator () {
-    return ";\n";
+    return ";";
 }
 
 </script>
@@ -109,7 +109,7 @@ function instructionSeparator () {
        <div id="radio">
             <button id="clear" >Clear</button>
 <button id="generateScript" >Generate</button>
-<span>Device Address</span> <input type="text">
+<span>Device Address</span> <input type="text" id="device_ip" value="192.168.10.74">
         </div>
     </div>
     <div id="side-nav" >
@@ -128,10 +128,10 @@ function instructionSeparator () {
           
             <div data-shape="triangleShape" class="palette_node_element draw2d_droppable" data-image='images/input.png' style="background-color:#FFCB70"><img src="images/input.png"><div>Value</div></div>
             <div data-shape="addShape" class="palette_node_element draw2d_droppable" data-image='images/input.png' style="background-color:#FFCB70"><img src="images/add.png"><div>Add</div></div>
-            <div data-shape="invertShape" class="palette_node_element draw2d_droppable">Inverse</div>
-            <div data-shape="conditionShape" class="palette_node_element draw2d_droppable">Condition</div>
-            <div data-shape="andShape" class="palette_node_element draw2d_droppable">And</div>
-            <div data-shape="printShape" class="palette_node_element draw2d_droppable">Print</div>
+            <div data-shape="invertShape" class="palette_node_element draw2d_droppable" data-image='images/reverse.png' style="background-color:#FFCB70"><img src="images/reverse.png"><div>Invert</div></div>
+            <div data-shape="conditionShape" class="palette_node_element draw2d_droppable" data-image='images/is-greater-than.png' style="background-color:#FFCB70"><img src="images/is-greater-than.png"><div>Condition</div></div>
+            <div data-shape="andShape" class="palette_node_element draw2d_droppable" data-image='images/merge.png' style="background-color:#FFCB70"><img src="images/merge.png"><div>And</div></div>
+            <div data-shape="printShape" class="palette_node_element draw2d_droppable" data-image='images/printer.png' style="background-color:#FFCB70"><img src="images/printer.png"><div>Log</div></div>
      </div>
    </div>
     <div id="canvas" class="" ></div>

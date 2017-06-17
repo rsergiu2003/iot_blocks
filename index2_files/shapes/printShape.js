@@ -22,12 +22,10 @@ var printShape = draw2d.SetFigure.extend({
      this.persistPorts=false;
      this.setResizeable(false);
 
+       this.image = new draw2d.shape.basic.Image();
+        this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
+     
 
-
-     port.on("connect", function(emitterPort, connection){
-         
-
-     });
    },
 
 
@@ -45,9 +43,9 @@ var printShape = draw2d.SetFigure.extend({
         });
         
         //output specific code
-        str = str + "p:" + portVarTranslate("port."+this.getInputPorts().first().id) + ":" + this.id + instructionSeparator();
+        str = str + "p:" + portVarTranslate("port."+this.getInputPorts().first().id) + instructionSeparator();
 
-        console.log(str);
+        return str;
     },
 
    createShapeElement : function()
@@ -61,7 +59,7 @@ var printShape = draw2d.SetFigure.extend({
    createSet: function()
    {
        this.canvas.paper.setStart();
-
+       this.image.path = this.getUserData()['imageIcon'];
         // BoundingBox
         shape = this.canvas.paper.path("M0,0 L91,0 L91,87 L0,87");
         shape.attr({"stroke":"none","stroke-width":0,"fill":"none"});
@@ -69,13 +67,8 @@ var printShape = draw2d.SetFigure.extend({
         
         // Rectangle
         shape = this.canvas.paper.path('M91,72Q91,87 76, 87L15,87Q0,87 0, 72L0,15Q0,0 15, 0L76,0Q91,0 91, 15L91,72');
-        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#C2FF73","dasharray":null,"opacity":1});
+        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#FFCB70","dasharray":null,"opacity":1});
         shape.data("name","Rectangle");
-        
-        // Label
-        shape = this.canvas.paper.text(0,0,'Print');
-        shape.attr({"x":24.546875,"y":43.5,"text-anchor":"start","text":"Print","font-family":"\"Arial\"","font-size":26,"stroke":"#FF0000","fill":"lightblue","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
-        shape.data("name","Label");
         
 
         return this.canvas.paper.setFinish();
