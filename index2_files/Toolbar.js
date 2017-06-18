@@ -14,11 +14,12 @@ example.Toolbar = Class.extend({
         $("#generateScript").button().click(function(){
             var finalStr = "";
             app.view.getFigures().each(function (index, figure) {
-                if(figure.NAME == "OutShape" || figure.NAME == "printShape") {
+                if(figure.NAME == "OutShape" || figure.NAME == "printShape" || figure.NAME == "lcdShape") {
                     finalStr = finalStr + figure.renderPath();
                 }
             });
        
+            console.log(finalStr);
             if(confirm("your code is: "+finalStr+" upload ?")) {
                 var data = new Object();
                 data['ip'] = $("#device_ip").val();
