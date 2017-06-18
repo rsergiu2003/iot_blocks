@@ -14,7 +14,7 @@ example.Toolbar = Class.extend({
         $("#generateScript").button().click(function(){
             var finalStr = "";
             app.view.getFigures().each(function (index, figure) {
-                if(figure.NAME == "OutShape" || figure.NAME == "printShape" || figure.NAME == "lcdShape") {
+                if(figure.NAME == "OutShape" || figure.NAME == "printShape" || figure.NAME == "lcdShape"|| figure.NAME == "toneShape") {
                     finalStr = finalStr + figure.renderPath();
                 }
             });
