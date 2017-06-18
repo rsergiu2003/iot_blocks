@@ -14,13 +14,13 @@ var toneShape = draw2d.SetFigure.extend({
      this._super( $.extend({stroke:0, bgColor:null, width:91,height:87},attr), setter, getter);
      var port;
      // Port
-     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(4.395604395604396, 29.069767441860467));
+     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0, 25));
      port.setConnectionDirection(3);
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
      port.setMaxFanOut(20);
      // Port
-     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(4.395604395604396, 75));
+     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0, 75));
      port.setConnectionDirection(3);
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
@@ -28,10 +28,8 @@ var toneShape = draw2d.SetFigure.extend({
      this.persistPorts=false;
      this.setResizeable(false);
 
-       this.image = new draw2d.shape.basic.Image();
-        this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
-     
-
+     this.image = new draw2d.shape.basic.Image();
+     this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
    },
 
 
@@ -79,16 +77,14 @@ var toneShape = draw2d.SetFigure.extend({
         shape.data("name","Rectangle");
         
           // Label
-        shape = this.canvas.paper.text(0,0,'En');
-        shape.attr({"x":15,"y":25,"text-anchor":"start","text":"En","font-family":"\"Arial\"","font-size":13,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
+        shape = this.canvas.paper.text(0,0,'On');
+        shape.attr({"x":10,"y":20,"text-anchor":"start","text":"On","font-family":"\"Arial\"","font-size":13,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
         shape.data("name","Label");
         
         // Label
-        shape = this.canvas.paper.text(0,0,'hz');
-        shape.attr({"x":14.5,"y":64.5,"text-anchor":"start","text":"hz","font-family":"\"Arial\"","font-size":13,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
+        shape = this.canvas.paper.text(0,0,'Hz');
+        shape.attr({"x":10,"y":65,"text-anchor":"start","text":"Hz","font-family":"\"Arial\"","font-size":13,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
         shape.data("name","Label");
-        
-
         
 
         return this.canvas.paper.setFinish();

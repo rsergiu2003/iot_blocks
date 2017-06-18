@@ -49,6 +49,10 @@ var andShape = draw2d.SetFigure.extend({
      port.setBackgroundColor("#37B1DE");
      port.setName("Port");
      port.setMaxFanOut(20);
+     
+    this.image = new draw2d.shape.basic.Image();
+    this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
+    
      this.persistPorts=false;
    },
 
@@ -63,6 +67,7 @@ var andShape = draw2d.SetFigure.extend({
    createSet: function()
    {
        this.canvas.paper.setStart();
+       this.image.path = this.getUserData()['imageIcon'];
 
         // BoundingBox
         shape = this.canvas.paper.path("M0,0 L93,0 L93,131.18085 L0,131.18085");

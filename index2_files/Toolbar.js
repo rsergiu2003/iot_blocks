@@ -11,7 +11,7 @@ example.Toolbar = Class.extend({
         });
 
 
-        $("#generateScript").button().click(function(){
+        $("#generateScript").button().click(function(e){
             var finalStr = "";
             app.view.getFigures().each(function (index, figure) {
                 if(figure.NAME == "OutShape" || figure.NAME == "printShape" || figure.NAME == "lcdShape"|| figure.NAME == "toneShape") {
@@ -20,6 +20,8 @@ example.Toolbar = Class.extend({
             });
        
             console.log(finalStr);
+            copyToClipboard(finalStr);
+            
             if(confirm("your code is: "+finalStr+" upload ?")) {
                 var data = new Object();
                 data['ip'] = $("#device_ip").val();
@@ -29,14 +31,18 @@ example.Toolbar = Class.extend({
                   url: "upload.php",
                   data: data,
                   success: function (response) {
-                      alert(response);
+                      console.log("code successfully deployed to device");
+                      console.log(response);
+                      alert("Yay! Code successfully deployed to device!");
                   }
                 });
-           }
+          }
             // alert(finalStr);
         });
         
-        
+        function copyToClipboard(text) {
+          window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+        }
         
         $('#radio>input').click(function() {
 

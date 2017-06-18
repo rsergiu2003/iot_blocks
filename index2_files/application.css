@@ -141,12 +141,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cecece', end
 #side-nav #logo {
 	border-bottom: 1px solid #e0e0e0;
 	display: block;
-	height: 64px;
+	height: 34px;
 	margin: auto;
 	padding: 12px 24px 10px 24px;
 	position: relative;
-	font-size: 30px;
-	font-weight: 100;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Arial;
 }
 
 
@@ -245,6 +246,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cecece', end
 }
 .context-menu-input > label > span {
     margin-left: 5px;
+}
+
+.centertext {
+    text-align: center;
 }
 
 .context-menu-input > label,

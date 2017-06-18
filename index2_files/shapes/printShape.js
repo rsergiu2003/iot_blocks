@@ -22,10 +22,9 @@ var printShape = draw2d.SetFigure.extend({
      this.persistPorts=false;
      this.setResizeable(false);
 
-       this.image = new draw2d.shape.basic.Image();
-        this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
+     this.image = new draw2d.shape.basic.Image();
+     this.add(this.image, new draw2d.layout.locator.CenterLocator( ));
      
-
    },
 
 
@@ -70,6 +69,10 @@ var printShape = draw2d.SetFigure.extend({
         shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#C2FF73","dasharray":null,"opacity":1});
         shape.data("name","Rectangle");
         
+          // Label
+        shape = this.canvas.paper.text(0,0,'Log');
+        shape.attr({"x":35,"y":75,"text-anchor":"start","text":"Log","font-family":"\"Arial\"","font-size":13,"stroke":"none","fill":"#080808","stroke-scale":true,"font-weight":"normal","stroke-width":0,"opacity":1});
+        shape.data("name","Label");
 
         return this.canvas.paper.setFinish();
    },

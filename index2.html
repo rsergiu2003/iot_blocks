@@ -50,6 +50,7 @@
     <script src="./index2_files/shapes/printShape.js"></script>
     <script src="./index2_files/shapes/lcdShape.js"></script>
     <script src="./index2_files/shapes/toneShape.js"></script>
+    <script src="./index2_files/shapes/distanceShape.js"></script>
 
 <script type="text/javascript">
 // set this to true if you want see the JSON serilization/debug panel
@@ -110,22 +111,24 @@ function instructionSeparator () {
     <div id="toolbar">
        <div id="radio">
             <button id="clear" >Clear</button>
-<button id="generateScript" >Generate</button>
-<span>Device Address</span> <input type="text" id="device_ip" value="192.168.10.74">
+            <button id="generateScript" >Generate</button>
+            <span style="font-size: 14; font-weight: bold; font-family: Arial; margin-left: 10px">Device Address</span>
+            <input type="text" id="device_ip" value="192.168.10.74"></input>
         </div>
     </div>
     <div id="side-nav" >
-     <span id="logo">IoT Designer</span>
+     <span id="logo">iBlocks</span>
      <div id="layer_elements"></div>
      <div id="layer_header" class="highlight panetitle blackgradient">
             <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" title="drag&amp;drop the table into the canvas.." data-sensor_id=0 data-image='images/tools-and-utensils.png'><img src="images/tools-and-utensils.png"><div>Temp 1</div></div></div>
             <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" data-sensor_id=1 data-image='images/tools-and-utensils.png'><img src="images/tools-and-utensils.png"><div>Temp 2</div></div>
             <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" data-sensor_id=2 data-image='images/soil.png'><img src="images/soil.png"><div>Soil 1</div></div>
             <div data-shape="testShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" data-sensor_id=3 data-image='images/drops.png'><img src="images/drops.png"><div>Humid 1</div></div>
+            <div data-shape="distanceShape" class="palette_node_element draw2d_droppable"  style="background-color:#54EEFF" data-sensor_id=3 data-image='images/sensor.png'><img src="images/sensor.png"><div>Distance</div></div>
           
             <div data-shape="triangleShape" class="palette_node_element draw2d_droppable" data-image='images/input.png' style="background-color:#54EEFF"><img src="images/input.png"><div>Value</div></div>
 
-            <div data-shape="addShape" class="palette_node_element draw2d_droppable" data-image='images/input.png' style="background-color:#FFCB70"><img src="images/add.png"><div>Add</div></div>
+            <div data-shape="addShape" class="palette_node_element draw2d_droppable" data-image='images/add.png' style="background-color:#FFCB70"><img src="images/add.png"><div>Add</div></div>
             <div data-shape="invertShape" class="palette_node_element draw2d_droppable" data-image='images/reverse.png' style="background-color:#FFCB70"><img src="images/reverse.png"><div>Invert</div></div>
             <div data-shape="conditionShape" class="palette_node_element draw2d_droppable" data-image='images/is-greater-than.png' style="background-color:#FFCB70"><img src="images/is-greater-than.png"><div>Condition</div></div>
             <div data-shape="andShape" class="palette_node_element draw2d_droppable" data-image='images/merge.png' style="background-color:#FFCB70"><img src="images/merge.png"><div>And</div></div>
