@@ -66,7 +66,7 @@ var triangleShape = draw2d.SetFigure.extend({
         
         // Rectangle
         shape = this.canvas.paper.path('M91,72Q91,87 76, 87L15,87Q0,87 0, 72L0,15Q0,0 15, 0L76,0Q91,0 91, 15L91,72');
-        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#FFCB70","dasharray":null,"opacity":1});
+        shape.attr({"stroke":"#303030","stroke-width":1,"fill":"#54EEFF","dasharray":null,"opacity":1});
         shape.data("name","Rectangle");
         
         // Label
