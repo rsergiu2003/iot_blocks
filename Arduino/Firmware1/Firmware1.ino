@@ -16,8 +16,9 @@
 /*
  * THis is the program
  */
-char program[] = "i:0:0;=1:0;l:1;i:0:0;=2:0;p:2;                                                                               ";
-//char program[] = "i:0:0;p:0;v:1:28;>:0:1:2;o:2:0;v:3:30;>:0:3:4;o:4:1;p:1;";
+
+//demo 1 distance sensor
+char program[] = "v:0:100;=1:0;d:2;=3:2;>:1:3:4;=5:4;v:6:30;=7:6;t:5:7;p:3;p:5;p:1;l:2;";
 
 float variables[15];
 
@@ -26,7 +27,7 @@ OneWire oneWire(ds18b20);
 DallasTemperature sensors(&oneWire);
 
 //used to generate strings for debug printing
-char logStr[40];
+char logStr[50];
 
 #define OUTPUT0 12
 #define OUTPUT1 11
@@ -34,15 +35,22 @@ char logStr[40];
 unsigned long timeLastExecution;
 TM1638 segmeted_module(4, 5, 3);
 
+#define TONE_PIN A5
+
+#define PING_TRIG 9
+#define PING_ECHO 10
 
 // the setup function runs once when you press reset or power the board
 void setup() {
   pinMode(OUTPUT0, OUTPUT);  
   pinMode(OUTPUT1, OUTPUT);  
 
+  pinMode(PING_TRIG, OUTPUT); // Sets the trigPin as an Output
+  pinMode(PING_ECHO, INPUT); // Sets the echoPin as an Input
+
   Serial.begin(9600);
 
-  setupWIFI();
+//  setupWIFI();
   
   sensors.begin(); 
 
@@ -56,7 +64,7 @@ void loop() {
 //    float temp = sensors.getTempCByIndex(0);
 //    Serial.print("T:"); Serial.println(temp);
 
-    wifiLoop();
+//    wifiLoop();
 
    byte keys = segmeted_module.getButtons();
 
@@ -64,7 +72,7 @@ void loop() {
   segmeted_module.setLEDs(keys);
     
 //   delay(100);
-  if((millis() - timeLastExecution) > 2000) {
+  if((millis() - timeLastExecution) > 1000) {
     executeProgram();
     timeLastExecution = millis();
   }
@@ -81,7 +89,7 @@ char comvertToNumeric(char str[]) {
   //the current instructio
   char instruction = '#';
   //valid instructions
-  String instructions = String("iv=o+>!");
+  String instructions = String("ptdiv=o+>!");
   //numeric strinv
   String numeric = String("0123456789");
   //the current parameter string
@@ -101,7 +109,7 @@ void executeProgram () {
   //the current instructio
    instruction = '#';
   //valid instructions
-  instructions = String("l!piv=o+>");
+  instructions = String("lptdiv=o+>!");
   //numeric strinv
   numeric = String("0123456789");
   //the current parameter string
@@ -173,6 +181,12 @@ void executeOpperation (char opperation, int parameter1,int parameter2, int para
     break;
     case '!' : 
       invert(parameter1, parameter2);
+    break;
+     case 't' : 
+      playTone(parameter1, parameter2);
+    break;
+     case 'd' : 
+      getDistance(parameter1);
     break;
    }
 }

@@ -28,10 +28,10 @@
  }
 
 char lcdbuffer[8];
-char sfloat[4];
+char sfloat[8];
 void lcdValue(char v) {
   dtostrf(variables[v], 4, 2, sfloat);
-  sprintf(lcdbuffer,"    %s",sfloat);
+  sprintf(lcdbuffer,"%s",sfloat);
    segmeted_module.setDisplayToString(lcdbuffer);
  }
 
@@ -47,4 +47,14 @@ void lcdValue(char v) {
     variables[v2] = 1;
   }
  }
+
+ void playTone(char v1, char v2) {
+  if(variables[v1] > 0) {
+    tone(TONE_PIN,variables[v2]*30, 200);
+  }
+ }
+
+void getDistance(char v1) {
+  variables[v1] = getDistanceHelper();
+}
 
