@@ -27,6 +27,15 @@
     Serial.println(variables[v]);
  }
 
+char lcdbuffer[8];
+char sfloat[4];
+void lcdValue(char v) {
+  dtostrf(variables[v], 4, 2, sfloat);
+  sprintf(lcdbuffer,"    %s",sfloat);
+   segmeted_module.setDisplayToString(lcdbuffer);
+ }
+
+
  void setVariable(char v, int value) {
   variables[v] = value;
  }

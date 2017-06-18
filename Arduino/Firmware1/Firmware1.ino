@@ -6,6 +6,7 @@
  #include <DallasTemperature.h>
 #include <Wire.h>
 #include <OneWire.h>
+#include <TM1638.h>
 
 /*
  * Define some inputs first
@@ -15,7 +16,7 @@
 /*
  * THis is the program
  */
-char program[] = "i:0:0;=2:0;v:3:28;=4:3;>:2:4:5;=1:5;p:1;i:0:0;=2:0;v:3:28;=4:3;>:2:4:5;=6:5;o:6:0;                                                                                ";
+char program[] = "i:0:0;=1:0;l:1;i:0:0;=2:0;p:2;                                                                               ";
 //char program[] = "i:0:0;p:0;v:1:28;>:0:1:2;o:2:0;v:3:30;>:0:3:4;o:4:1;p:1;";
 
 float variables[15];
@@ -31,6 +32,8 @@ char logStr[40];
 #define OUTPUT1 11
 
 unsigned long timeLastExecution;
+TM1638 segmeted_module(4, 5, 3);
+
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -54,6 +57,11 @@ void loop() {
 //    Serial.print("T:"); Serial.println(temp);
 
     wifiLoop();
+
+   byte keys = segmeted_module.getButtons();
+
+  // light the first 4 red LEDs and the last 4 green LEDs as the buttons are pressed
+  segmeted_module.setLEDs(keys);
     
 //   delay(100);
   if((millis() - timeLastExecution) > 2000) {
@@ -93,7 +101,7 @@ void executeProgram () {
   //the current instructio
    instruction = '#';
   //valid instructions
-  instructions = String("!piv=o+>");
+  instructions = String("l!piv=o+>");
   //numeric strinv
   numeric = String("0123456789");
   //the current parameter string
@@ -156,6 +164,9 @@ void executeOpperation (char opperation, int parameter1,int parameter2, int para
     break;
     case 'p' : 
       logValue(parameter1);
+    break;
+     case 'l' : 
+      lcdValue(parameter1);
     break;
     case 'v' : 
       setVariable(parameter1, parameter2);
