@@ -22,14 +22,15 @@
 // demo 1 temperature with condition and beep!
 //char program[] = "i:0:0;=1:0;v:2:28;=3:2;>:1:3:4;=5:4;v:6:100;=7:6;t:5:7;p:1;";
 //demp 2 = demo 1 + display temp
-//char program[] = "i:0:0;=1:0;v:2:28;=3:2;>:1:3:4;=5:4;v:6:100;=7:6;t:5:7;i:0:0;=8:0;l:8;";
+char program[] = "i:0:0;=1:0;v:2:28;=3:2;>:1:3:4;=5:4;v:6:100;=7:6;t:5:7;i:0:0;=8:0;l:8;";
 //demo 3 output digital 1 & 2 negated
-char program[] = "i:0:0;=1:0;v:2:28;=3:2;>:1:3:4;=5:4;!:5:6;=7:6;o:7:0;i:0:0;=1:0;v:2:28;=3:2;>:1:3:4;=8:4;o:8:1;";
+//char program[] = "i:0:0;=1:0;v:2:28;=3:2;>:1:3:4;=5:4;!:5:6;=7:6;o:7:0;i:0:0;=1:0;v:2:28;=3:2;>:1:3:4;=8:4;o:8:1;";
 //demo x distance sensor
 //char program[] = "v:0:100;=1:0;d:2;=3:2;>:1:3:4;=5:4;v:6:30;=7:6;t:5:7;p:3;p:5;p:1;l:2;";
 
 float variables[15];
 
+//temperature
 #define ds18b20 2
 OneWire oneWire(ds18b20);
 DallasTemperature sensors(&oneWire);
@@ -47,6 +48,8 @@ TM1638 segmeted_module(4, 5, 3);
 
 #define PING_TRIG 9
 #define PING_ECHO 10
+
+#define DIGITAL0 A4
 
 // the setup function runs once when you press reset or power the board
 void setup() {

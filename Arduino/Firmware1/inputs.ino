@@ -9,6 +9,10 @@ float getInputValue (char sensor) {
   if(sensor == 0) {
     return getDS18B20(0);
   }
+  // 1 - digital in
+  if(sensor == 1) {
+    return digitalRead(DIGITAL0);
+  }
 }
 
 float getDS18B20(char index) {
